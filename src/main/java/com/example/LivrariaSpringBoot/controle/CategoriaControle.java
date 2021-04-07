@@ -3,6 +3,8 @@ package com.example.LivrariaSpringBoot.controle;
 import com.example.LivrariaSpringBoot.dto.CategoriaDto;
 import com.example.LivrariaSpringBoot.modelo.Categoria;
 import com.example.LivrariaSpringBoot.servico.CategoriaServico;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+@Tag( name = "Api Rest Categoria")
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaControle {
@@ -26,7 +29,7 @@ public class CategoriaControle {
     private CategoriaServico categoriaServico;
 
     
-    
+    @Operation(summary="Retorna uma unica categoria") 
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> findById(@PathVariable Long id) {
 
@@ -36,7 +39,7 @@ public class CategoriaControle {
     }
 
     
-    
+    @Operation(summary="Retorna uma lista de categorias") 
     @GetMapping
     public ResponseEntity<List<CategoriaDto>> findAll() {
 
@@ -48,7 +51,7 @@ public class CategoriaControle {
     }
 
     
-    
+    @Operation(summary="salva uma categoria") 
     @PostMapping
     public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
 
@@ -59,7 +62,7 @@ public class CategoriaControle {
     }
 
     
-    
+    @Operation(summary="edita uma categoria") 
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaDto> update(@PathVariable Long id, @RequestBody CategoriaDto categoria) {
 
@@ -69,7 +72,7 @@ public class CategoriaControle {
     }
 
     
-    
+    @Operation(summary="deleta uma categoria") 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
 
