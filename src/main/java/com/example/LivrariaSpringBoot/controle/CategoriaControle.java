@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
+@CrossOrigin("*")
 @Tag( name = "Api Rest Categoria")
 @RestController
 @RequestMapping("/categorias")
@@ -53,7 +57,7 @@ public class CategoriaControle {
     
     @Operation(summary="salva uma categoria") 
     @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria categoria) {
 
         categoria = categoriaServico.create(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
@@ -64,7 +68,7 @@ public class CategoriaControle {
     
     @Operation(summary="edita uma categoria") 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaDto> update(@PathVariable Long id, @RequestBody CategoriaDto categoria) {
+    public ResponseEntity<CategoriaDto> update(@Valid @PathVariable Long id, @RequestBody CategoriaDto categoria) {
 
         Categoria ob = categoriaServico.update(id, categoria);
 

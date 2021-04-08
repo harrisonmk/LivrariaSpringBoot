@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Livro implements Serializable {
@@ -18,8 +20,20 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    
+    @NotEmpty(message = "Campo Titulo eh obrigatorio") //Nao pode ser vazio
+    @Length(min =3, max = 50,message = "O campo Descricao deve ter entre 3 e 50 caracteres") //min 3 caracteres e maximo 50 caracteres
     private String titulo;
+    
+    
+    @NotEmpty(message = "Campo NomeAutor eh obrigatorio") //Nao pode ser vazio
+    @Length(min =3, max = 100,message = "O campo NomeAutor deve ter entre 3 e 100 caracteres") //min 3 caracteres e maximo 100 caracteres
     private String nomeAutor;
+    
+    
+    @NotEmpty(message = "Campo Texto eh obrigatorio") //Nao pode ser vazio
+    @Length(min =10, max = 200000,message = "O campo Texto deve ter entre 10 e 200000 caracteres") //min 10 caracteres e maximo 200000 caracteres
     private String texto;
     
     @JsonIgnore //ignora as categorias do livro
@@ -37,6 +51,8 @@ public class Livro implements Serializable {
         this.categoria = categoria;
     }
 
+    
+    
     public Livro() {
     }
 

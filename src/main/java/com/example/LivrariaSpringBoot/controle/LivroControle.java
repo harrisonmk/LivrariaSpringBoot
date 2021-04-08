@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+@CrossOrigin("*")
 @Tag( name = "Api Rest Livro")
 @RestController
 @RequestMapping("/livros")
@@ -54,7 +57,7 @@ public class LivroControle {
     
     @Operation(summary="Edita um livro") 
     @PutMapping("/{id}") //atualiza o objeto inteiro
-    public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> update(@PathVariable Long id,@Valid @RequestBody Livro livro) {
 
         Livro newLivro = livroService.update(id, livro);
 
@@ -65,7 +68,7 @@ public class LivroControle {
     
     @Operation(summary="Edita um ou mais atributos de um livro") 
     @PatchMapping("/{id}") //pode atualizar apenas um campo do objeto
-    public ResponseEntity<Livro> updatePatch(@PathVariable Long id, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> updatePatch(@PathVariable Long id,@Valid @RequestBody Livro livro) {
 
         Livro newLivro = livroService.update(id, livro);
 
@@ -76,7 +79,7 @@ public class LivroControle {
     
     @Operation(summary="Salva um livro") 
     @PostMapping
-    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat,@Valid @RequestBody Livro livro) {
 
         Livro newLivro = livroService.create(id_cat, livro);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newLivro.getId()).toUri();
