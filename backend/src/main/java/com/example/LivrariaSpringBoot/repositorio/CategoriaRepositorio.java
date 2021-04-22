@@ -12,6 +12,7 @@ public interface CategoriaRepositorio extends JpaRepository<Categoria,Long> {
     
     //Ordena a lista de categorias por nome
     @Query("SELECT obj FROM Categoria obj ORDER BY obj.nome")
+    @Override
     public List<Categoria> findAll();
     
 }
