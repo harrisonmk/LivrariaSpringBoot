@@ -46,8 +46,15 @@ export class CategoriaService {
         
     }
 
+   //MEtodo para atualizar uma categoria
+    update(categoria: Categoria):Observable<void>{
+
+        const url = `${this.baseUrl}/categorias/${categoria.id}`
+        return this.http.put<void>(url,categoria)
+
+    }
     
-    
+    //Metodo para exibir uma mensagem na tela
     mensagem(str: String):void{
      this._snack.open(`${str}`,'OK',{
         horizontalPosition:'end',
@@ -56,6 +63,8 @@ export class CategoriaService {
      });
 
     }
+
+
 
 
 }
