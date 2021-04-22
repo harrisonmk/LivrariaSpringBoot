@@ -20,8 +20,36 @@
 
 }
 
+button {
+    margin-bottom: .8rem;
+}
+
 .table {
 
     width: 100%;
 
 }
+
+.livros {
+
+    color: sienna;
+
+}
+
+.edit {
+    color: cornflowerblue;
+
+}
+
+.delete {
+
+    color: brown;
+}
+
+.mat-header {
+
+    width: 5rem;
+
+}
+
+
