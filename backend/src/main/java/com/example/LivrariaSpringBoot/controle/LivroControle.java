@@ -46,7 +46,7 @@ public class LivroControle {
     
     @Operation(summary="Retorna uma lista de livros") 
     @GetMapping
-    public ResponseEntity<List<LivroDto>> findAll(@RequestParam(value = "/categoria", defaultValue = "0") Long id_cat) {
+    public ResponseEntity<List<LivroDto>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat) {
 
         List<Livro> list = livroService.findAll(id_cat);
         List<LivroDto> listDto = list.stream().map(obj -> new LivroDto(obj)).collect(Collectors.toList());
