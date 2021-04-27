@@ -12,7 +12,7 @@ export class LivroService {
 
     baseUrl: String = environment.baseUrl
 
-    constructor(private http: HttpClient,private _snack: MatSnackBar) {
+    constructor(private http: HttpClient, private _snack: MatSnackBar) {
     }
 
     findAllByCategoria(id_cat: String): Observable<Livro[]> {
@@ -32,24 +32,30 @@ export class LivroService {
 
     }
 
-    findById(id: String):Observable<Livro>{
+    findById(id: String): Observable<Livro> {
 
         const url = `${this.baseUrl}/livros/${id}`
         return this.http.get<Livro>(url);
 
     }
 
-    update(livro: Livro):Observable<Livro>{
+    update(livro: Livro): Observable<Livro> {
         const url = `${this.baseUrl}/livros/${livro.id}`
-       return this.http.put<Livro>(url,livro);
+        return this.http.put<Livro>(url, livro);
+    }
+
+    delete(id: String): Observable<void> {
+        const url = `${this.baseUrl}/livros/${id}`;
+        return this.http.delete<void>(url);
+
     }
 
     //Metodo para exibir uma mensagem na tela
-    mensagem(str: String):void{
-        this._snack.open(`${str}`,'OK',{
-            horizontalPosition:'end',
-            verticalPosition:'top',
-            duration:3000
+    mensagem(str: String): void {
+        this._snack.open(`${str}`, 'OK', {
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            duration: 3000
         });
 
     }
