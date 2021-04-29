@@ -15,7 +15,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Restfull API com spring boot 2.4.4")
-                        .version("versao 1")
+                        .version("versao 1.0")
                         .description("api desenvolvida para estudo")
                         .termsOfService("http://swagger.io/terms")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
